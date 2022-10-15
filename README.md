@@ -23,4 +23,5 @@
 	<li>Дата создания.</li>
 	<li>Дата последнего изменения.</li>
 </ol>
+![image](https://user-images.githubusercontent.com/87008317/196003950-90b3582d-32e2-400d-9e29-db35d393a87e.png)
 
