@@ -26,13 +26,13 @@
 </ol>
 
 <h2>База данных</h2>
-(https://user-images.githubusercontent.com/87008317/197391698-a53111d5-9c1b-4f72-90ca-db96714a163b.png)
+[!image](https://user-images.githubusercontent.com/87008317/197391698-a53111d5-9c1b-4f72-90ca-db96714a163b.png)
 
 
 <h3>Описание к базе:</h3>
 <h4>Таблица user содержит информацию о пользователе.</h4>
 <p>id — pk</p>
-<p>Логинk</p>
+<p>Логин</p>
 <p>Пароль</p>
 <p>Имя пользователя<b>(или оно не нужно раз есть логин?)</b></p>
 <p>Email — ak</p>
