@@ -26,7 +26,7 @@
 </ol>
 
 <h2>База данных</h2>
-[!image](https://user-images.githubusercontent.com/87008317/197391698-a53111d5-9c1b-4f72-90ca-db96714a163b.png)
+![image](https://user-images.githubusercontent.com/87008317/197396003-cac1ac76-8f32-4c4c-84da-a9dd78eda45c.png)
 
 
 <h3>Описание к базе:</h3>
@@ -34,7 +34,6 @@
 <p>id — pk</p>
 <p>Логин</p>
 <p>Пароль</p>
-<p>Имя пользователя<b>(или оно не нужно раз есть логин?)</b></p>
 <p>Email — ak</p>
 
 <p>У каждого пользователя есть возможность добавлять файлы в хранилище.</p>
