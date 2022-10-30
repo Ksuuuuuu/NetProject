@@ -14,7 +14,7 @@ public abstract class BaseEntity
     public void Init()
     {
         Id = Guid.NewGuid();
-        CreationTime = DateTime.UtcNow;
-        ModificationTime = DateTime.UtcNow;
+        CreatedTime = DateTime.UtcNow;
+        UpdatedTime = DateTime.UtcNow;
     }
 }

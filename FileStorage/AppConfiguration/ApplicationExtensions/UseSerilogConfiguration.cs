@@ -1,6 +1,6 @@
 using Serilog;
 
-namespace FileStorage.AppConfiguration.ApplicationExtensions
+namespace FileStorage.WebApi.AppConfiguration.ApplicationExtensions
 {
     public static partial class AppExtensions
     {

@@ -1,5 +1,5 @@
-using FileStorage.AppConfiguration.ServicesExtensions;
-using FileStorage.AppConfiguration.ApplicationExtensions;
+using FileStorage.WebApi.AppConfiguration.ServicesExtensions;
+using FileStorage.WebApi.AppConfiguration.ApplicationExtensions;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);

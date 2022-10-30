@@ -5,7 +5,7 @@ namespace FileStorage.Entities;
 public class Context : DbContext
 {
     public DbSet<User> Users { get; set; }
-    public DbSet<File> Files { get; set; }
+    public DbSet<Models.File> Files { get; set; }
 
     public Context(DbContextOptions<Context> options) : base(options) { }
 
@@ -16,16 +16,18 @@ public class Context : DbContext
         builder.Entity<User>().ToTable("users");
         builder.Entity<User>().HasKey(x => x.Id);
 
+
         #endregion
 
         #region Files
 
-        builder.Entity<File>().ToTable("files");
-        builder.Entity<File>().HasKey(x => x.Id);
-        builder.Entity<File>().HasOne(x => x.User)
-                            .WithMany(x => x.Files)
-                            .HasForeighKey(x => x.UserId)
+        builder.Entity<Models.File>().ToTable("files");
+        builder.Entity<Models.File>().HasKey(x => x.Id);
+        builder.Entity<Models.File>().HasOne(x => x.User)
+                                    .WithMany(x => x.Files)
+                                .HasForeignKey(x => x.UserId)
                             .OnDelete(DeleteBehavior.Cascade);
+        
         #endregion
     }
 }
