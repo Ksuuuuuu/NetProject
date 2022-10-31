@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 using Microsoft.OpenApi.Models;
 
-namespace FileStorage.WebApi.AppConfiguration.ServicesExtensions
+namespace FileStorage.AppConfiguration.ServicesExtensions
 {
     public static partial class ServicesExtensions
     {

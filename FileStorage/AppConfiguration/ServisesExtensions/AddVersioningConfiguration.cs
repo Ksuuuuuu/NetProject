@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace FileStorage.WebApi.AppConfiguration.ServicesExtensions
+namespace FileStorage.AppConfiguration.ServicesExtensions
 {
 
     public static partial class ServicesExtensions

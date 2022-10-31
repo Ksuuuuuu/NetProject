@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
-namespace FileStorage.WebApi.AppConfiguration.ApplicationExtensions
+namespace FileStorage.AppConfiguration.ApplicationExtensions
 {
     /// <summary>
     /// Application builder extensions

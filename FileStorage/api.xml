@@ -4,40 +4,40 @@
         <name>FileStorage</name>
     </assembly>
     <members>
-        <member name="T:FileStorage.WebApi.AppConfiguration.ApplicationExtensions.AppExtensions">
+        <member name="T:FileStorage.AppConfiguration.ApplicationExtensions.AppExtensions">
             <summary>
             Application builder extensions
             </summary>
         </member>
-        <member name="M:FileStorage.WebApi.AppConfiguration.ApplicationExtensions.AppExtensions.UseSerilogConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:FileStorage.AppConfiguration.ApplicationExtensions.AppExtensions.UseSerilogConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Use serilog configuration
             </summary>
             <param name="app"></param>
         </member>
-        <member name="M:FileStorage.WebApi.AppConfiguration.ApplicationExtensions.AppExtensions.UseSwaggerConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:FileStorage.AppConfiguration.ApplicationExtensions.AppExtensions.UseSwaggerConfiguration(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             Use swagger configuration
             </summary>
             <param name="app"></param>
-        </member>
-        <member name="M:FileStorage.WebApi.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSerilogConfiguration(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
-            <summary>
-            Add serilog configuration
-            </summary>
-            <param name="builder"></param>
-        </member>
-        <member name="M:FileStorage.WebApi.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
-            <summary>
-            Add swagger settings
-            </summary>
-            <param name="services"></param>
         </member>
         <member name="M:FileStorage.AppConfiguration.ServicesExtensions.ServicesExtensions.AddDbContextConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             Add serilog configuration
             </summary>
             <param name="builder"></param>
+        </member>
+        <member name="M:FileStorage.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSerilogConfiguration(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            Add serilog configuration
+            </summary>
+            <param name="builder"></param>
+        </member>
+        <member name="M:FileStorage.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSwaggerConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add swagger settings
+            </summary>
+            <param name="services"></param>
         </member>
     </members>
 </doc>
