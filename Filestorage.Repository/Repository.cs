@@ -50,7 +50,7 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
             }
             else
             {
-                obj.CreatedTime = DateTime.UtcNow;
+                obj.UpdatedTime = DateTime.UtcNow;
                 var result = _context.Set<T>().Attach(obj);
                 _context.Entry(obj).State = EntityState.Modified;
                 _context.SaveChanges();

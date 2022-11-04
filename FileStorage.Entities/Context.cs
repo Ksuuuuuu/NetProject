@@ -16,7 +16,6 @@ public class Context : DbContext
         builder.Entity<User>().ToTable("users");
         builder.Entity<User>().HasKey(x => x.Id);
 
-
         #endregion
 
         #region Files
@@ -25,8 +24,8 @@ public class Context : DbContext
         builder.Entity<Models.File>().HasKey(x => x.Id);
         builder.Entity<Models.File>().HasOne(x => x.User)
                                     .WithMany(x => x.Files)
-                                .HasForeignKey(x => x.UserId)
-                            .OnDelete(DeleteBehavior.Cascade);
+                                    .HasForeignKey(x => x.UserId)
+                                    .OnDelete(DeleteBehavior.Cascade);
         
         #endregion
     }
