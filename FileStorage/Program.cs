@@ -1,6 +1,7 @@
 using FileStorage.AppConfiguration.ServicesExtensions;
 using FileStorage.AppConfiguration.ApplicationExtensions;
 using FileStorage.Entities;
+using FileStorage.Repository;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 
@@ -17,7 +18,8 @@ builder.Services.AddVersioningConfiguration();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerConfiguration();
 
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+builder.Services.AddScoped<DbContext, Context>();
+builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
 var app = builder.Build();
 
@@ -33,4 +35,18 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 
-app.Run();
+try
+{
+    Log.Information("Application starting...");
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Error("Application finished with error {error}", ex);
+}
+finally
+{
+    Log.Information("Application stopped");
+    Log.CloseAndFlush();
+}
