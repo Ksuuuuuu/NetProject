@@ -1,5 +1,5 @@
 using System.Linq.Expressions;
-using FileStorage.Entity.Models;
+using FileStorage.Entities.Models;
 
 namespace FileStorage.Repository;
 
