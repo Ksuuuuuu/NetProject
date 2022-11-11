@@ -26,7 +26,7 @@ public class Context : DbContext
                                     .WithMany(x => x.Files)
                                     .HasForeignKey(x => x.UserId)
                                     .OnDelete(DeleteBehavior.Cascade);
-        
+
         #endregion
     }
 }

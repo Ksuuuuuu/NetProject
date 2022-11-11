@@ -33,14 +33,14 @@ namespace FileStorage.Controllers
         [HttpGet]
         public IActionResult GetUsers()
         {
-             User user = new User();
+            User user = new User();
             // user.Email = "hbghesdbc";
             // user.Login = "hskjncfs";
             // user.PasswordHash = "erfh.ekjrnf";
             // user.CreatedTime = DateTime.Now;
             // user.UpdatedTime = DateTime.Now;
 
-           // _repository.Save(user);
+            // _repository.Save(user);
 
             user.Email = "jhk";
 

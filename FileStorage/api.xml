@@ -39,5 +39,75 @@
             </summary>
             <param name="services"></param>
         </member>
+        <member name="T:FileStorage.Controllers.FilesController">
+            <summary>
+            Files endpoints
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.FilesController.#ctor(FileStorage.Repository.IRepository{FileStorage.Entities.Models.File})">
+            <summary>
+            Files controller
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.FilesController.GetUsers">
+            <summary>
+            Get files
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FileStorage.Controllers.FilesController.AddUser(FileStorage.Entities.Models.File)">
+            <summary>
+            Add file
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FileStorage.Controllers.FilesController.DeleteUser(FileStorage.Entities.Models.File)">
+            <summary>
+            Delete file
+            </summary>
+        </member>
+        <member name="T:FileStorage.Controllers.TestController">
+            <summary>
+            Users endpoints
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.TestController.#ctor(FileStorage.Repository.IRepository{FileStorage.Entities.Models.User})">
+            <summary>
+            Users controller
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.TestController.GetUsers">
+            <summary>
+            Get users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:FileStorage.Controllers.UsersController">
+            <summary>
+            Users endpoints
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.UsersController.#ctor(FileStorage.Repository.IRepository{FileStorage.Entities.Models.User})">
+            <summary>
+            Users controller
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.UsersController.GetUsers">
+            <summary>
+            Get users
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FileStorage.Controllers.UsersController.AddUser(FileStorage.Entities.Models.User)">
+            <summary>
+            Add user
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:FileStorage.Controllers.UsersController.DeleteUser(FileStorage.Entities.Models.User)">
+            <summary>
+            Delete user
+            </summary>
+        </member>
     </members>
 </doc>
