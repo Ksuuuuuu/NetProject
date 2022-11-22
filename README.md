@@ -25,7 +25,8 @@
 </ol>
 
 <h2>База данных</h2>
-![image](https://user-images.githubusercontent.com/87008317/197803590-91aeed0b-b7f7-4ccf-bb5b-f7f347988ec4.png)
+![image](https://user-images.githubusercontent.com/87008317/203326824-564b3e74-3192-42d5-ab02-fbbf6a483eab.png)
+
 
 
 <h3>Описание к базе:</h3>
