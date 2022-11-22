@@ -1,8 +1,7 @@
 using FileStorage.AppConfiguration.ServicesExtensions;
 using FileStorage.AppConfiguration.ApplicationExtensions;
-using FileStorage.Entities;
 using FileStorage.Repository;
-using Microsoft.EntityFrameworkCore;
+using FileStorage.Services;
 using Serilog;
 
 var configuration = new ConfigurationBuilder()
@@ -15,11 +14,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.AddSerilogConfiguration();
 builder.Services.AddDbContextConfiguration(configuration);
 builder.Services.AddVersioningConfiguration();
+builder.Services.AddMapperConfiguration();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerConfiguration();
-
-builder.Services.AddScoped<DbContext, Context>();
-builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+builder.Services.AddRepositoryConfiguration();
+builder.Services.AddBusinessLogicConfiguration();
 
 var app = builder.Build();
 

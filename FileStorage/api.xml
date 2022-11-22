@@ -27,6 +27,12 @@
             </summary>
             <param name="builder"></param>
         </member>
+        <member name="M:FileStorage.AppConfiguration.ServicesExtensions.ServicesExtensions.AddMapperConfiguration(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Add serilog configuration
+            </summary>
+            <param name="builder"></param>
+        </member>
         <member name="M:FileStorage.AppConfiguration.ServicesExtensions.ServicesExtensions.AddSerilogConfiguration(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             Add serilog configuration

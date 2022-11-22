@@ -1,8 +1,7 @@
-using System.Globalization;
-using System.Reflection.Metadata;
-using System.Runtime.InteropServices;
-using FileStorage.Entities.Models;
-using FileStorage.Repository;
+using AutoMapper;
+using FileStorage.Services.Abstract;
+using FileStorage.Services.Models;
+using FileStorage.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileStorage.Controllers
@@ -16,69 +15,87 @@ namespace FileStorage.Controllers
     [ApiController]
     public class UsersController : ControllerBase
     {
-        private IRepository<User> _repository;
+        private readonly IUserService userService;
+        private readonly IMapper mapper;
 
         /// <summary>
         /// Users controller
         /// </summary>
-        public UsersController(IRepository<User> repository)
+        public UsersController(IUserService userService, IMapper mapper)
         {
-            _repository = repository;
+            this.userService = userService;
+            this.mapper = mapper;
         }
-
         /// <summary>
-        /// Get users
+        /// Get users by pages
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetUsers()
+        public IActionResult GetUsers([FromQuery] int limit = 20, [FromQuery] int offset = 0)
         {
-            var users = _repository.GetAll();
-            return Ok(users);
+             var pageModel = userService.GetUsers(limit, offset);
+            return Ok(mapper.Map<PageResponse<UserResponse>>(pageModel));
         }
 
 
         /// <summary>
-        /// Add user
+        /// Update user
         /// </summary>
-        /// <returns></returns>
-        [HttpPost]
-        public IActionResult AddUser(User user)
+        [HttpPut]
+        [Route("{id}")]
+        public IActionResult UpdateUser([FromRoute] Guid id, [FromBody] UpdateUserRequest model)
         {
-            var response = _repository.Save(user);
-            return Ok(response);
+            var validationResult = model.Validate();
+            if (!validationResult.IsValid)
+            {
+                return BadRequest(validationResult.Errors);
+            }
+            try
+            {
+                var resultModel = userService.UpdateUser(id, mapper.Map<UpdateUserModel>(model));
+
+                return Ok(mapper.Map<UserResponse>(resultModel));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
         /// <summary>
         /// Delete user
         /// </summary>
         [HttpDelete]
-        public void DeleteUser(User user)
+        [Route("{id}")]
+        public IActionResult DeleteUser([FromRoute] Guid id)
         {
-            _repository.Delete(user);
+            try
+            {
+                userService.DeleteUser(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
-        // /// <summary>
-        // /// Get user by id
-        // /// </summary>
-        // /// <returns></returns>
-        // [HttpGet]
-        // public IActionResult GetUserById(Guid id)
-        // {
-        //     var user = _repository.GetById(id);
-        //     return Ok(user);
-        // }
-
-
-        //  /// <summary>
-        // /// Update user
-        // /// </summary>
-        // /// <returns></returns>
-        // [HttpPost]
-        // public IActionResult UpdateUser(User user)
-        // {
-        //    var response = _repository.Save(user);
-        //    return Ok(response);
-        // }
+        /// <summary>
+        /// Get user
+        /// </summary>
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetUser([FromRoute] Guid id)
+        {
+            try
+            {
+                var userModel = userService.GetUser(id);
+                return Ok(mapper.Map<UserResponse>(userModel));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
+        }
     }
 }

@@ -3,8 +3,8 @@ namespace FileStorage.Entities.Models;
 public abstract class BaseEntity
 {
     public Guid Id { get; set; }
-    public DateTime CreatedTime { get; set; }
-    public DateTime UpdatedTime { get; set; }
+    public DateTime CreationTime { get; set; }
+    public DateTime ModificationTime { get; set; }
 
     public bool IsNew()
     {
@@ -14,7 +14,7 @@ public abstract class BaseEntity
     public void Init()
     {
         Id = Guid.NewGuid();
-        CreatedTime = DateTime.UtcNow;
-        UpdatedTime = DateTime.UtcNow;
+        CreationTime = DateTime.UtcNow;
+        ModificationTime = DateTime.UtcNow;
     }
 }

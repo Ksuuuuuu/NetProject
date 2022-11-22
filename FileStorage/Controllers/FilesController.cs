@@ -1,10 +1,8 @@
-using System.Globalization;
-using System.Reflection.Metadata;
-using System.Runtime.InteropServices;
-using FileStorage.Entities.Models;
-using FileStorage.Repository;
+using AutoMapper;
+using FileStorage.Services.Abstract;
+using FileStorage.Services.Models;
+using FileStorage.Models;
 using Microsoft.AspNetCore.Mvc;
-//using FileStorage.Entities.Models.File MyFile;
 
 namespace FileStorage.Controllers
 {
@@ -17,25 +15,45 @@ namespace FileStorage.Controllers
     [ApiController]
     public class FilesController : ControllerBase
     {
-        private IRepository<Entities.Models.File> _repository;
+        private readonly IFileService fileService;
+        private readonly IMapper mapper;
 
         /// <summary>
-        /// Files controller
+        /// files controller
         /// </summary>
-        public FilesController(IRepository<Entities.Models.File> repository)
+        public FilesController(IFileService fileService, IMapper mapper)
         {
-            _repository = repository;
+            this.fileService = fileService;
+            this.mapper = mapper;
         }
-
         /// <summary>
-        /// Get files
+        /// Get files by pages
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetUsers()
+        public IActionResult GetFiles([FromQuery] int limit = 20, [FromQuery] int offset = 0)
         {
-            var files = _repository.GetAll();
-            return Ok(files);
+             var pageModel = fileService.GetFiles(limit, offset);
+            return Ok(mapper.Map<PageResponse<FileResponse>>(pageModel));
+        }
+
+
+        /// <summary>
+        /// Delete file
+        /// </summary>
+        [HttpDelete]
+        [Route("{id}")]
+        public IActionResult DeleteFile([FromRoute] Guid id)
+        {
+            try
+            {
+                fileService.DeleteFile(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
 
 
@@ -44,42 +62,31 @@ namespace FileStorage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddUser(Entities.Models.File file)
+        public IActionResult AddFile([FromBody] FileModel file)
         {
-            var response = _repository.Save(file);
+            var response = fileService.AddFile(file);
             return Ok(response);
         }
 
         /// <summary>
-        /// Delete file
+        /// Get file
         /// </summary>
-        [HttpDelete]
-        public void DeleteUser(Entities.Models.File file)
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult GetUser([FromRoute] Guid id)
         {
-            _repository.Delete(file);
+            try
+            {
+                var fileModel = fileService.GetFile(id);
+                return Ok(mapper.Map<FileResponse>(fileModel));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.ToString());
+            }
         }
-
-        // /// <summary>
-        // /// Get file by id
-        // /// </summary>
-        // /// <returns></returns>
-        // [HttpGet]
-        // public IActionResult GetUserById(Guid id)
-        // {
-        //     var file = _repository.GetById(id);
-        //     return Ok(file);
-        // }
-
-
-        // /// <summary>
-        // /// Update file
-        // /// </summary>
-        // /// <returns></returns>
-        // [HttpPost]
-        // public IActionResult UpdateUser(Entities.Models.File file)
-        // {
-        //     var response = _repository.Save(file);
-        //     return Ok(response);
-        // }
     }
 }
+
+
+    
