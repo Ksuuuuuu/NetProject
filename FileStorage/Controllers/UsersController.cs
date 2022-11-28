@@ -34,7 +34,7 @@ namespace FileStorage.Controllers
         public IActionResult GetUsers([FromQuery] int limit = 20, [FromQuery] int offset = 0)
         {
              var pageModel = userService.GetUsers(limit, offset);
-            return Ok(mapper.Map<PageResponse<UserResponse>>(pageModel));
+            return Ok(mapper.Map<PageResponse<UserPreviewModel>>(pageModel));
         }
 
 

@@ -46,7 +46,7 @@ public class FileService : IFileService
         };
     }
 
-    FileModel AddFile(FileModel fileModel){
+    public FileModel AddFile(FileModel fileModel){
         filesRepository.Save(mapper.Map<Entities.Models.File>(fileModel));
         return fileModel;
     }

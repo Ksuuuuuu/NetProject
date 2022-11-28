@@ -50,69 +50,62 @@
             Files endpoints
             </summary>
         </member>
-        <member name="M:FileStorage.Controllers.FilesController.#ctor(FileStorage.Repository.IRepository{FileStorage.Entities.Models.File})">
+        <member name="M:FileStorage.Controllers.FilesController.#ctor(FileStorage.Services.Abstract.IFileService,AutoMapper.IMapper)">
             <summary>
-            Files controller
+            files controller
             </summary>
         </member>
-        <member name="M:FileStorage.Controllers.FilesController.GetUsers">
+        <member name="M:FileStorage.Controllers.FilesController.GetFiles(System.Int32,System.Int32)">
             <summary>
-            Get files
+            Get files by pages
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FileStorage.Controllers.FilesController.AddUser(FileStorage.Entities.Models.File)">
+        <member name="M:FileStorage.Controllers.FilesController.DeleteFile(System.Guid)">
+            <summary>
+            Delete file
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.FilesController.AddFile(FileStorage.Services.Models.FileModel)">
             <summary>
             Add file
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FileStorage.Controllers.FilesController.DeleteUser(FileStorage.Entities.Models.File)">
+        <member name="M:FileStorage.Controllers.FilesController.GetUser(System.Guid)">
             <summary>
-            Delete file
+            Get file
             </summary>
-        </member>
-        <member name="T:FileStorage.Controllers.TestController">
-            <summary>
-            Users endpoints
-            </summary>
-        </member>
-        <member name="M:FileStorage.Controllers.TestController.#ctor(FileStorage.Repository.IRepository{FileStorage.Entities.Models.User})">
-            <summary>
-            Users controller
-            </summary>
-        </member>
-        <member name="M:FileStorage.Controllers.TestController.GetUsers">
-            <summary>
-            Get users
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:FileStorage.Controllers.UsersController">
             <summary>
             Users endpoints
             </summary>
         </member>
-        <member name="M:FileStorage.Controllers.UsersController.#ctor(FileStorage.Repository.IRepository{FileStorage.Entities.Models.User})">
+        <member name="M:FileStorage.Controllers.UsersController.#ctor(FileStorage.Services.Abstract.IUserService,AutoMapper.IMapper)">
             <summary>
             Users controller
             </summary>
         </member>
-        <member name="M:FileStorage.Controllers.UsersController.GetUsers">
+        <member name="M:FileStorage.Controllers.UsersController.GetUsers(System.Int32,System.Int32)">
             <summary>
-            Get users
+            Get users by pages
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FileStorage.Controllers.UsersController.AddUser(FileStorage.Entities.Models.User)">
+        <member name="M:FileStorage.Controllers.UsersController.UpdateUser(System.Guid,FileStorage.Models.UpdateUserRequest)">
             <summary>
-            Add user
+            Update user
             </summary>
-            <returns></returns>
         </member>
-        <member name="M:FileStorage.Controllers.UsersController.DeleteUser(FileStorage.Entities.Models.User)">
+        <member name="M:FileStorage.Controllers.UsersController.DeleteUser(System.Guid)">
             <summary>
             Delete user
+            </summary>
+        </member>
+        <member name="M:FileStorage.Controllers.UsersController.GetUser(System.Guid)">
+            <summary>
+            Get user
             </summary>
         </member>
     </members>
