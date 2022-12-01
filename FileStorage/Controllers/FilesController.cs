@@ -31,10 +31,10 @@ namespace FileStorage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult GetFiles([FromQuery] int limit = 20, [FromQuery] int offset = 0)
+        public IActionResult GetFiles([FromQuery] Guid userId, [FromQuery] int limit = 20, [FromQuery] int offset = 0)
         {
-             var pageModel = fileService.GetFiles(limit, offset);
-            return Ok(mapper.Map<PageResponse<FileResponse>>(pageModel));
+             var pageModel = fileService.GetFiles(userId, limit, offset);
+            return Ok(mapper.Map<PageResponse<FilePreviewModel>>(pageModel));
         }
 
 
@@ -62,9 +62,9 @@ namespace FileStorage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
-        public IActionResult AddFile([FromBody] FileModel file)
+        public IActionResult AddFile([FromQuery] Guid userId,[FromForm] IFormFile file)
         {
-            var response = fileService.AddFile(file);
+            var response = fileService.AddFile(userId, file);
             return Ok(response);
         }
 
@@ -73,7 +73,7 @@ namespace FileStorage.Controllers
         /// </summary>
         [HttpGet]
         [Route("{id}")]
-        public IActionResult GetUser([FromRoute] Guid id)
+        public IActionResult GetFile([FromRoute] Guid id)
         {
             try
             {

@@ -1,5 +1,5 @@
 using FileStorage.Services.Models;
-
+using Microsoft.AspNetCore.Http;
 namespace FileStorage.Services.Abstract;
 
 public interface IFileService
@@ -8,7 +8,7 @@ public interface IFileService
 
     void DeleteFile(Guid id);
 
-    FileModel AddFile(FileModel fileModel);
+    FileModel AddFile(Guid idUser, IFormFile file);
 
-    PageModel<FilePreviewModel> GetFiles(int limit = 20, int offset = 0);
+    PageModel<FilePreviewModel> GetFiles(Guid idUser, int limit = 20, int offset = 0);
 }
