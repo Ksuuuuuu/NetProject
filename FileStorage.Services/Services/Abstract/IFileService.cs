@@ -8,7 +8,7 @@ public interface IFileService
 
     void DeleteFile(Guid id);
 
-    FileModel AddFile(Guid idUser, IFormFile file);
+    CreateFileModel AddFile(Guid idUser, IFormFile file);
 
     PageModel<FilePreviewModel> GetFiles(Guid idUser, int limit = 20, int offset = 0);
 }

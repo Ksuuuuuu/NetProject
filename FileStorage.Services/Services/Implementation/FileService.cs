@@ -12,7 +12,7 @@ public class FileService : IFileService
     private readonly IRepository<Entities.Models.File> filesRepository;
     private readonly IMapper mapper;
     private readonly IHostingEnvironment hostingEnvironment;
-    public FileService(FileRepository<Entities.Models.File> filesRepository, IMapper mapper, IHostingEnvironment _hosting)
+    public FileService(IRepository<Entities.Models.File> filesRepository, IMapper mapper, IHostingEnvironment _hosting)
     {
         this.filesRepository = filesRepository;
         this.mapper = mapper;
@@ -38,7 +38,8 @@ public class FileService : IFileService
 
     public PageModel<FilePreviewModel> GetFiles(Guid idUser, int limit = 20, int offset = 0)
     {
-        var files = filesRepository.GetAll(idUser);
+        var files = filesRepository.GetAll().Where(f => f.UserId == idUser);
+
         int totalCount = files.Count();
         var chunk = files.OrderBy(x => x.Name).Skip(offset).Take(limit);
 
@@ -49,14 +50,20 @@ public class FileService : IFileService
         };
     }
 
-    public FileModel AddFile(Guid idUser, IFormFile file){
+    public CreateFileModel AddFile(Guid idUser, IFormFile file){
 
         var path = "/Files/" + file.FileName;
+        var name = file.Name;
+        var userFile = filesRepository.GetAll().Where(f => f.UserId == idUser).FirstOrDefault(f => f.Name == name);
+
+        if (userFile == null){
+            throw new Exception();
+        }
         using (var fileStream = new FileStream(hostingEnvironment.WebRootPath + path, FileMode.Create))
         {
             file.CopyToAsync(fileStream);
         }
-        FileModel fileModel = new FileModel();
+        CreateFileModel fileModel = new CreateFileModel();
 
         fileModel.Name = file.Name;
         fileModel.Path =  path;
@@ -65,5 +72,6 @@ public class FileService : IFileService
 
         filesRepository.Save(mapper.Map<Entities.Models.File>(fileModel));
         return fileModel;
+        
     }
 }

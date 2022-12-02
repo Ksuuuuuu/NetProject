@@ -22,7 +22,7 @@ public class Repository<T> : IRepository<T> where T : BaseEntity
         _context.SaveChanges();
     }
 
-    public IQueryable<T> GetAll(Guid UserId)
+    public IQueryable<T> GetAll()
     {
         return _context.Set<T>();
     }
