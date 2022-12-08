@@ -52,11 +52,11 @@ public class FileService : IFileService
 
     public CreateFileModel AddFile(Guid idUser, IFormFile file){
 
-        var path = "/Files/" + file.FileName;
+        var path = "/Projects/Files/" + file.FileName;
         var name = file.Name;
         var userFile = filesRepository.GetAll().Where(f => f.UserId == idUser).FirstOrDefault(f => f.Name == name);
 
-        if (userFile == null){
+        if (userFile != null){
             throw new Exception();
         }
         using (var fileStream = new FileStream(hostingEnvironment.WebRootPath + path, FileMode.Create))
@@ -65,10 +65,10 @@ public class FileService : IFileService
         }
         CreateFileModel fileModel = new CreateFileModel();
 
-        fileModel.Name = file.Name;
+        fileModel.Name = file.FileName;
         fileModel.Path =  path;
         fileModel.UserId = idUser;
-        fileModel.Extension = file.Name.Substring(file.Name.LastIndexOf("."));
+        fileModel.Extension = file.FileName.Substring(file.FileName.LastIndexOf("."));
 
         filesRepository.Save(mapper.Map<Entities.Models.File>(fileModel));
         return fileModel;

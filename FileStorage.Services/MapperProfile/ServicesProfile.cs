@@ -20,7 +20,7 @@ public class ServicesProfile : Profile
 
         CreateMap<Entities.Models.File, FileModel>().ReverseMap();
         CreateMap<Entities.Models.File, FilePreviewModel>().ReverseMap();
-
+        CreateMap<Entities.Models.File, CreateFileModel>().ReverseMap();
         #endregion
     }
 }

@@ -55,7 +55,7 @@
             files controller
             </summary>
         </member>
-        <member name="M:FileStorage.Controllers.FilesController.GetFiles(System.Int32,System.Int32)">
+        <member name="M:FileStorage.Controllers.FilesController.GetFiles(System.Guid,System.Int32,System.Int32)">
             <summary>
             Get files by pages
             </summary>
@@ -66,13 +66,13 @@
             Delete file
             </summary>
         </member>
-        <member name="M:FileStorage.Controllers.FilesController.AddFile(FileStorage.Services.Models.FileModel)">
+        <member name="M:FileStorage.Controllers.FilesController.AddFile(System.Guid,Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             Add file
             </summary>
             <returns></returns>
         </member>
-        <member name="M:FileStorage.Controllers.FilesController.GetUser(System.Guid)">
+        <member name="M:FileStorage.Controllers.FilesController.GetFile(System.Guid)">
             <summary>
             Get file
             </summary>
