@@ -2,6 +2,7 @@ using FileStorage.AppConfiguration.ServicesExtensions;
 using FileStorage.AppConfiguration.ApplicationExtensions;
 using FileStorage.Repository;
 using FileStorage.Services;
+using FileStorage.AppConfiguration;
 using Serilog;
 
 var configuration = new ConfigurationBuilder()
@@ -16,12 +17,13 @@ builder.Services.AddDbContextConfiguration(configuration);
 builder.Services.AddVersioningConfiguration();
 builder.Services.AddMapperConfiguration();
 builder.Services.AddControllers();
-builder.Services.AddSwaggerConfiguration();
+builder.Services.AddSwaggerConfiguration(configuration);
 builder.Services.AddRepositoryConfiguration();
 builder.Services.AddBusinessLogicConfiguration();
+builder.Services.AddAuthorizationConfiguration(configuration);
 
 var app = builder.Build();
-
+await RepositoryInitializer.InitializeRepository(app);
 app.UseSerilogConfiguration();
 
 // Configure the HTTP request pipeline.
@@ -31,7 +33,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthorization();
+app.UseAuthorizationConfiguration();
+app.UseMiddleware(typeof(ExceptionsMiddleware));
 app.MapControllers();
 
 try

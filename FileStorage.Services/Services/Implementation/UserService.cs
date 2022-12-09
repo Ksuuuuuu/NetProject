@@ -3,6 +3,8 @@ using FileStorage.Entities.Models;
 using FileStorage.Repository;
 using FileStorage.Services.Abstract;
 using FileStorage.Services.Models;
+using FileStorage.Shared.Exceptions;
+using FileStorage.Shared.ResultCodes;
 
 namespace FileStorage.Services.Implementation;
 
@@ -21,7 +23,7 @@ public class UserService : IUserService
         var userToDelete = usersRepository.GetById(id);
         if (userToDelete == null)
         {
-            throw new Exception("User not found");
+            throw new LogicException(ResultCode.USER_NOT_FOUND);
         }
 
         usersRepository.Delete(userToDelete);
@@ -30,6 +32,10 @@ public class UserService : IUserService
     public UserModel GetUser(Guid id)
     {
         var user = usersRepository.GetById(id);
+        if (user == null)
+        {
+            throw new LogicException(ResultCode.USER_NOT_FOUND);
+        }
         return mapper.Map<UserModel>(user);
     }
 
@@ -51,7 +57,7 @@ public class UserService : IUserService
         var existingUser = usersRepository.GetById(id);
         if (existingUser == null)
         {
-            throw new Exception("User not found");
+            throw new LogicException(ResultCode.USER_NOT_FOUND);
         }
 
         existingUser.Name = user.Name;

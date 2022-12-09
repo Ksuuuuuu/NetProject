@@ -2,6 +2,7 @@ using AutoMapper;
 using FileStorage.Services.Abstract;
 using FileStorage.Services.Models;
 using FileStorage.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FileStorage.Controllers
@@ -13,6 +14,7 @@ namespace FileStorage.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
+    [Authorize]
     public class UsersController : ControllerBase
     {
         private readonly IUserService userService;
@@ -33,8 +35,11 @@ namespace FileStorage.Controllers
         [HttpGet]
         public IActionResult GetUsers([FromQuery] int limit = 20, [FromQuery] int offset = 0)
         {
-             var pageModel = userService.GetUsers(limit, offset);
-            return Ok(mapper.Map<PageResponse<UserPreviewModel>>(pageModel));
+            var pageModel = userService.GetUsers(limit, offset);
+
+            var response = mapper.Map<PageResponse<UserPreviewResponse>>(pageModel);
+
+            return Ok(response); // code 200 + body
         }
 
 

@@ -1,3 +1,4 @@
+using Duende.IdentityServer.Models;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
 
 namespace FileStorage.AppConfiguration.ApplicationExtensions
@@ -22,6 +23,11 @@ namespace FileStorage.AppConfiguration.ApplicationExtensions
                 {
                     options.SwaggerEndpoint($"{description.GroupName}/swagger.json", description.GroupName);
                 };
+
+                options.OAuthAppName("API - Swagger");
+
+                options.OAuthClientId("swagger");
+                options.OAuthClientSecret("swagger");
             });
         }
     }

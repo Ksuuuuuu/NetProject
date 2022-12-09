@@ -3,7 +3,7 @@ using FileStorage.Entities.Models;
 
 namespace FileStorage.Repository;
 
-public interface IRepository<T> where T : IBaseEntity
+public interface IRepository<T> where T : class, IBaseEntity
 {
     IQueryable<T> GetAll();
     IQueryable<T> GetAll(Expression<Func<T, bool>> predicate);

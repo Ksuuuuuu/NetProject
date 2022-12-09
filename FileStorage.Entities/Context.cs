@@ -13,6 +13,7 @@ public class Context : IdentityDbContext<User, UserRole, Guid>
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        base.OnModelCreating(builder);
         #region Users
 
         builder.Entity<User>().ToTable("users");

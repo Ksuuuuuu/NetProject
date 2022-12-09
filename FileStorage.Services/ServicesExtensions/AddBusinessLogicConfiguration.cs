@@ -13,6 +13,7 @@ public static partial class ServicesExtensions
 
         //services
         services.AddScoped<IUserService, UserService>();
+        services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IFileService, FileService>();
     }
 }
