@@ -33,7 +33,7 @@ public class AuthService : IAuthService
     }
     public async Task<UserModel> RegisterUser(RegisterUserModel model)
     {
-        var existingUser = await userManager.FindByLoginAsync("swagger", model.Login);
+        var existingUser = usersRepository.GetAll(f => f.Login == model.Login).FirstOrDefault();
         if (existingUser != null)
         {
             throw new LogicException(ResultCode.USER_ALREADY_EXISTS);
@@ -55,13 +55,13 @@ public class AuthService : IAuthService
             throw new LogicException(ResultCode.IDENTITY_SERVER_ERROR);
         }
 
-        var createdUser = await userManager.FindByLoginAsync("swagger",model.Login);
+        var createdUser = usersRepository.GetAll(f => f.Login == model.Login).FirstOrDefault();
         return mapper.Map<UserModel>(createdUser);
     }
 
     public async Task<IdentityModel.Client.TokenResponse> LoginUser(LoginUserModel model)
     {
-        var user = await userManager.FindByLoginAsync("swagger", model.Login);
+        var user = usersRepository.GetAll(f => f.Login == model.Login).FirstOrDefault();
         if (user == null)
         {
             throw new LogicException(ResultCode.USER_NOT_FOUND);
