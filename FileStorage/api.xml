@@ -64,16 +64,19 @@
         </member>
         <member name="M:FileStorage.Controllers.AuthController.#ctor(FileStorage.Services.Abstract.IAuthService,AutoMapper.IMapper)">
             <summary>
-            Users controller
+            Authcontroller
             </summary>
         </member>
         <member name="M:FileStorage.Controllers.AuthController.RegisterUser(FileStorage.Services.Models.RegisterUserModel)">
             <summary>
-            Get users by pages
+            register
             </summary>
             <returns></returns>
         </member>
         <member name="M:FileStorage.Controllers.AuthController.LogInUser(FileStorage.Services.Models.LoginUserModel)">
+            <summary>
+            login
+            </summary>
             <returns></returns>
         </member>
         <member name="T:FileStorage.Controllers.FilesController">

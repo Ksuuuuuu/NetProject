@@ -32,6 +32,7 @@ namespace FileStorage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [Route("registerUser")]
         public IActionResult RegisterUser([FromBody] RegisterUserModel model)
         {
             var registerModel = authService.RegisterUser(model);
@@ -46,6 +47,7 @@ namespace FileStorage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [Route("loginUser")]
         public IActionResult LogInUser([FromBody] LoginUserModel model)
         {
             var loginModel = authService.LoginUser(model);
