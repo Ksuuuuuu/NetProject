@@ -42,11 +42,11 @@ public class AuthService : IAuthService
         var user = new User()
         {
             Login = model.Login,
-            Email = model.Email,
             UserName = model.Login,
+            Email = model.Email ?? "",
             Name = model.Name ?? "",
-            PasswordHash = model.Password,
-            EmailConfirmed = true
+            //Password = model.Password,
+            //EmailConfirmed = false
         };
 
         var result = await userManager.CreateAsync(user, model.Password);
@@ -70,7 +70,7 @@ public class AuthService : IAuthService
         var result = await signInManager.CheckPasswordSignInAsync(user, model.Password, false);
         if (!result.Succeeded)
         {
-            throw new LogicException(ResultCode.EMAIL_OR_PASSWORD_IS_INCORRECT);
+            throw new LogicException(ResultCode.LOGIN_OR_PASSWORD_IS_INCORRECT);
         }
 
         var client = new HttpClient();
@@ -87,7 +87,7 @@ public class AuthService : IAuthService
             ClientSecret = model.ClientSecret,
             UserName = model.Login,
             Password = model.Password,
-            Scope = "api offline_access"
+            Scope = "api"
         });
 
         if (tokenResponse.IsError)

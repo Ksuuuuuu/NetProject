@@ -19,7 +19,8 @@ public class PresentationProfile : Profile
         CreateMap<UserModel, UserResponse>();
         CreateMap<UpdateUserRequest, UpdateUserModel>();
         CreateMap<UserPreviewModel, UserPreviewResponse>();
-
+        CreateMap<LoginUserRequest, LoginUserModel>();
+         CreateMap<RegisterUserRequest, RegisterUserModel>();
         #endregion
     }
 }

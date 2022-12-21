@@ -4,6 +4,7 @@ using FileStorage.Services.Models;
 using FileStorage.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using IdentityModel.Client;
 
 namespace FileStorage.Controllers
 {
@@ -33,13 +34,20 @@ namespace FileStorage.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("registerUser")]
-        public IActionResult RegisterUser([FromBody] RegisterUserModel model)
+        public async Task<IActionResult> RegisterUserAsync([FromBody] RegisterUserRequest request)
         {
-            var registerModel = authService.RegisterUser(model);
-
-            var response = mapper.Map<PageResponse<RegisterUserModel>>(model);
-
-            return Ok(response); // code 200 + body
+            try
+            {
+                RegisterUserModel registerModel = mapper.Map<RegisterUserModel>(request);
+                UserModel result = await authService.RegisterUser(registerModel);
+                UserResponse response = mapper.Map<UserResponse>(result);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
+           
         }
 
         /// <summary>
@@ -48,13 +56,18 @@ namespace FileStorage.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("loginUser")]
-        public IActionResult LogInUser([FromBody] LoginUserModel model)
+        public async Task<IActionResult> LogInUserAsync([FromBody] LoginUserRequest request)
         {
-            var loginModel = authService.LoginUser(model);
-
-            var response = mapper.Map<PageResponse<LoginUserModel>>(model);
-
-            return Ok(response); // code 200 + body
+           try
+            {
+                LoginUserModel loginModel = mapper.Map<LoginUserModel>(request);
+                TokenResponse response = await authService.LoginUser(loginModel);
+                return Ok(response);
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
         }
     }
 }

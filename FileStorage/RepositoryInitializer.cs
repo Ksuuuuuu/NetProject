@@ -27,7 +27,7 @@ public static class RepositoryInitializer
         using (var scope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
         {
             var userManager = (UserManager<User>)scope.ServiceProvider.GetRequiredService(typeof(UserManager<User>));
-            var user = await userManager.FindByEmailAsync( MASTER_ADMIN_LOGIN);
+            var user = await userManager.FindByNameAsync(MASTER_ADMIN_LOGIN);
             if (user == null)
             {
                 var authService = (IAuthService)scope.ServiceProvider.GetRequiredService(typeof(IAuthService));
