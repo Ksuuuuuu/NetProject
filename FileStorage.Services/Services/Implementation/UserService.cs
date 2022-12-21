@@ -60,8 +60,11 @@ public class UserService : IUserService
             throw new LogicException(ResultCode.USER_NOT_FOUND);
         }
 
-        existingUser.Name = user.Name;
-        existingUser.Email= user.Email;
+        if (user.Name != null)
+            existingUser.Name = user.Name;
+
+        if (user.Email != null)
+            existingUser.Email= user.Email;
 
         existingUser = usersRepository.Save(existingUser);
         return mapper.Map<UserModel>(existingUser);

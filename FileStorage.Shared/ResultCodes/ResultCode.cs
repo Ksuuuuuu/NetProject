@@ -11,5 +11,11 @@ public enum ResultCode
     [Description("Login or password is incorrect.")]
     LOGIN_OR_PASSWORD_IS_INCORRECT = 003,
     [Description("User already exists.")]
-    USER_ALREADY_EXISTS = 004
+    USER_ALREADY_EXISTS = 004,
+
+    [Description("File not found.")]
+    FILE_NOT_FOUND = 005,
+
+     [Description("File already exists.")]
+    FILE_ALREADY_EXISTS = 006
 }

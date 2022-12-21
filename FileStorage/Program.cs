@@ -23,7 +23,7 @@ builder.Services.AddBusinessLogicConfiguration();
 builder.Services.AddAuthorizationConfiguration(configuration);
 
 var app = builder.Build();
-await RepositoryInitializer.InitializeRepository(app);
+await RepositoryInitializer.InitializeRepository(app.Services);
 app.UseSerilogConfiguration();
 
 // Configure the HTTP request pipeline.

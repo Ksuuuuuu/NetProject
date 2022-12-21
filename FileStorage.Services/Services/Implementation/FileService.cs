@@ -4,6 +4,8 @@ using FileStorage.Repository;
 using FileStorage.Services.Abstract;
 using FileStorage.Services.Models;
 using Microsoft.AspNetCore.Hosting;
+using FileStorage.Shared.Exceptions;
+using FileStorage.Shared.ResultCodes;
 
 namespace FileStorage.Services.Implementation;
 
@@ -24,7 +26,7 @@ public class FileService : IFileService
         var fileToDelete = filesRepository.GetById(id);
         if (fileToDelete == null)
         {
-            throw new Exception("File not found");
+            throw new LogicException(ResultCode.FILE_NOT_FOUND);
         }
 
         filesRepository.Delete(fileToDelete);
@@ -57,7 +59,7 @@ public class FileService : IFileService
         var userFile = filesRepository.GetAll().Where(f => f.UserId == idUser).FirstOrDefault(f => f.Name == name);
 
         if (userFile != null){
-            throw new Exception();
+           throw new LogicException(ResultCode.FILE_ALREADY_EXISTS);
         }
         using (var fileStream = new FileStream(hostingEnvironment.WebRootPath + path, FileMode.Create))
         {
