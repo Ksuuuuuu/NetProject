@@ -12,22 +12,13 @@ public partial class FileTests
     [Test]
     public async Task DeleteFile_Success()
     {
-        var model = new RegisterUserModel(){
-            Name = "Test1",
-            Password = "Test2",
-            Login = "Test3",
-            Email = "test@test",            
-        };
-
-        var resultModel = await authService.RegisterUser(model);
-
+        var userId = Guid.NewGuid();
         var fileModel = new FormFile(){
             FileName = "testFile"
         };
-        var addedFile = fileService.AddFile(resultModel.Id, fileModel);
+        var addedFile = fileService.AddFile(userId, fileModel);
 
         fileService.DeleteFile(addedFile.Id);
-
 
         Assert.Throws<LogicException>(()=>
             {
@@ -37,7 +28,7 @@ public partial class FileTests
     }
 
     [Test]
-    public async Task DeleteUser_NotExisting()
+    public async Task DeleteFile_NotExisting()
     {
         var randomGuid = Guid.NewGuid();
         Assert.Throws<LogicException>(()=>

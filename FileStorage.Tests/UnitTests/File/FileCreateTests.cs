@@ -12,19 +12,11 @@ public partial class FileTests
     [Test]
     public async Task CreateFile_Success()
     {
-        var model = new RegisterUserModel(){
-            Name = "Test1",
-            Password = "Test2",
-            Login = "Test3",
-            Email = "test@test",            
-        };
-
-        var resultModel = await authService.RegisterUser(model);
-
+        var userId = Guid.NewGuid();
         var fileModel = new FormFile(){
             FileName = "testFile"
         };
-        var addedFile = fileService.AddFile(resultModel.Id, fileModel);
+        var addedFile = fileService.AddFile(userId, fileModel);
         var file = fileService.GetFile(addedFile.Id);
         Assert.AreEqual(fileModel.FileName, file.Name);
     }
@@ -32,22 +24,14 @@ public partial class FileTests
     [Test]
     public async Task DeleteUser_AlreadyExisting()
     {
-          var model = new RegisterUserModel(){
-            Name = "Test1",
-            Password = "Test2",
-            Login = "Test3",
-            Email = "test@test",            
-        };
-
-        var resultModel = await authService.RegisterUser(model);
-
+       var userId = Guid.NewGuid();
         var fileModel = new FormFile(){
             FileName = "testFile"
         };
-        var addedFile = fileService.AddFile(resultModel.Id, fileModel);
+        var addedFile = fileService.AddFile(userId, fileModel);
 
         Assert.Throws<LogicException>(()=>
-            fileService.AddFile(resultModel.Id, fileModel)
+            fileService.AddFile(userId, fileModel)
         );
     }
 }
